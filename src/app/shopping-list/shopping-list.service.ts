@@ -18,4 +18,15 @@ export class ShoppingListService {
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
+  addNewIngredients(ingredients: Ingredient[]) {
+    // method below have a lot of unnecessary event emissions
+    /*    for (let newIngredient of ingredients) {
+          this.addIngredient(newIngredient);
+        }*/
+
+    // best method with spread
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
 }
