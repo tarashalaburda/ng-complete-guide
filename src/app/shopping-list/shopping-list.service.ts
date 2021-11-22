@@ -14,8 +14,11 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    const foundRecipe = this.ingredients.find(elem => JSON.stringify(elem) === JSON.stringify(ingredient))
+    if (foundRecipe == null) {
+      this.ingredients.push(ingredient)
+      this.ingredientsChanged.emit(this.ingredients.slice());
+    }
   }
 
   addNewIngredients(ingredients: Ingredient[]) {
